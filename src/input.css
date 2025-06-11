@@ -1,1 +1,33 @@
 @import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui" {
+  themes: all;
+}
+
+html,
+body {
+  @apply h-full;
+}
+
+body {
+  @apply flex flex-col;
+}
+
+main {
+  @apply grow;
+}
+
+.align-elements {
+  @apply max-w-7xl mx-auto px-5;
+}
+
+.card-image {
+  @apply transition-all duration-300;
+}
+
+.cardItem:hover {
+  @apply transition duration-300 shadow-xl;
+  .card-image {
+    scale: 1.05;
+  }
+}
