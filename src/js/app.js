@@ -1,4 +1,5 @@
 import { products, banners } from "./data.js";
+import { formatNumber } from "./formatNumber.js";
 
 let template = document.querySelector("#cards");
 let productList = document.querySelector("#product-list");
@@ -20,9 +21,10 @@ products.map((product) => {
   desc.textContent = product.description;
   rating.textContent = `⭐ ${product.rating} (${product.reviews.length} ta sharhlar)`;
   price.textContent = `$${product.price}`;
-  discountPrice.textContent = `$${Number(
-    product.price - (product.price / 100) * product.discountPercentage
-  ).toFixed(2)}`;
+  discountPrice.textContent = formatNumber(
+    product.price,
+    product.discountPercentage
+  );
 
   productList.appendChild(clone);
 });
@@ -43,14 +45,14 @@ banners.map((banner) => {
   swContainer.appendChild(clone);
 });
 
-let shopBtns = document.querySelectorAll("#shopping");
+// let shopBtns = document.querySelectorAll("#shopping");
 
-shopBtns.forEach((shop) => {
-  shop.addEventListener("click", () => {
-    const id = shop.parentElement.parentElement.parentElement;
+// shopBtns.forEach((shop) => {
+//   shop.addEventListener("click", () => {
+//     const id = shop.parentElement.parentElement.parentElement;
 
-    const cardItem = products.filter((product) => product.id == id.dataset.id);
+//     const cardItem = products.filter((product) => product.id == id.dataset.id);
 
-    // SHOP BTN davom etmoqda ...
-  });
-});
+//     // SHOPPING keyinroq davom ettiraman ...
+//   });
+// });
