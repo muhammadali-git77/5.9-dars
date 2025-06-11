@@ -7,6 +7,16 @@ let productList = document.querySelector("#product-list");
 products.map((product) => {
   let clone = template.content.cloneNode(true);
 
+  const {
+    id,
+    title,
+    description,
+    thumbnail    price: _price,
+    rating: _rating,
+    discountPercentage,
+    reviews
+  } = product;
+
   let cardImage = clone.querySelector(".card-image");
   let li = clone.querySelector("li");
   let cardTitle = clone.querySelector(".card-title");
@@ -15,15 +25,15 @@ products.map((product) => {
   let price = clone.querySelector(".price");
   let discountPrice = clone.querySelector(".discount-price");
 
-  li.dataset.id = product.id;
-  cardImage.src = product.thumbnail;
-  cardTitle.textContent = product.title;
-  desc.textContent = product.description;
-  rating.textContent = `⭐ ${product.rating} (${product.reviews.length} ta sharhlar)`;
-  price.textContent = `$${product.price}`;
+  li.dataset.id = id;
+  cardImage.src = thumbnail;
+  cardTitle.textContent = title;
+  desc.textContent = description;
+  rating.textContent = `⭐ ${_rating} (${reviews.length} ta sharhlar)`;
+  price.textContent = `$${_price}`;
   discountPrice.textContent = formatNumber(
-    product.price,
-    product.discountPercentage
+    _price,
+    discountPercentage
   );
 
   productList.appendChild(clone);
