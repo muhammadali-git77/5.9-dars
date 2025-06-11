@@ -11,10 +11,11 @@ products.map((product) => {
     id,
     title,
     description,
-    thumbnail    price: _price,
+    thumbnail,
+    price: _price,
     rating: _rating,
     discountPercentage,
-    reviews
+    reviews,
   } = product;
 
   let cardImage = clone.querySelector(".card-image");
@@ -31,10 +32,7 @@ products.map((product) => {
   desc.textContent = description;
   rating.textContent = `⭐ ${_rating} (${reviews.length} ta sharhlar)`;
   price.textContent = `$${_price}`;
-  discountPrice.textContent = formatNumber(
-    _price,
-    discountPercentage
-  );
+  discountPrice.textContent = formatNumber(_price, discountPercentage);
 
   productList.appendChild(clone);
 });
