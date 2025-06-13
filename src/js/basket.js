@@ -1,6 +1,7 @@
-import "./searching.js";
-import { products, banners } from "./data.js";
 import { formatNumber } from "./formatNumber.js";
+
+const products = JSON.parse(localStorage.getItem("nestedArray"));
+// console.log(products);
 
 let template = document.querySelector("#cards");
 let productList = document.querySelector("#product-list");
@@ -38,24 +39,9 @@ products.map((product) => {
   productList.appendChild(clone);
 });
 
-// BANNER
-let bannerT = document.querySelector("#banner");
-let swContainer = document.querySelector("swiper-container");
+let removeBtns = document.querySelectorAll("#shopping");
 
-banners.map((banner) => {
-  let clone = bannerT.content.cloneNode(true);
-
-  let a = clone.querySelector("#banner-href");
-  let image = clone.querySelector("#banner-image");
-
-  a.href = banner.url;
-  image.src = banner.imgUrl;
-
-  swContainer.appendChild(clone);
-});
-let shopBtns = document.querySelectorAll("#shopping");
-
-shopBtns.forEach((shop) => {
+removeBtns.forEach((shop) => {
   shop.addEventListener("click", () => {
     const id = shop.parentElement.parentElement.parentElement;
 
@@ -66,7 +52,7 @@ shopBtns.forEach((shop) => {
     const isExist = arr.some((item) => item.id == cardItem.id);
 
     if (!isExist) {
-      arr.push(cardItem);
+      arr.remove(cardItem);
     }
 
     localStorage.setItem("nestedArray", JSON.stringify(arr));
